@@ -18,40 +18,8 @@
     static get LIGHT_MODE() { return "light"; }
 
     constructor() {
-      if (this.mode != null) {
-        if (this.mode == ModeToggle.DARK_MODE) {
-          if (!this.isSysDarkPrefer) {
-            this.setDark();
-          }
-        } else {
-          if (this.isSysDarkPrefer) {
-            this.setLight();
-          }
-        }
-      }
-
-      var self = this;
-
-      /* always follow the system prefers */
-      this.sysDarkPrefers.addListener(function() {
-        if (self.mode != null) {
-          if (self.mode == ModeToggle.DARK_MODE) {
-            if (!self.isSysDarkPrefer) {
-              self.setDark();
-            }
-
-          } else {
-            if (self.isSysDarkPrefer) {
-              self.setLight();
-            }
-          }
-
-          self.clearMode();
-        }
-      });
-
-    } /* constructor() */
-
+      this.setLight();
+    }
 
     setDark() {
       $('html').attr(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
