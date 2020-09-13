@@ -10,7 +10,7 @@
 
 title: Jacky                          # the main title
 
-tagline: A collection of things I've learned  # it will display as the sub-title
+tagline: A collection of things I've learned as a software engineer  # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   A minimal, portfolio, sidebar,
@@ -51,7 +51,7 @@ google_site_verification: google_meta_tag_verification # change to your verifica
 baseurl: ''
 
 # Change to your timezone › http://www.timezoneconverter.com/cgi-bin/findzone/findzone
-timezone: Asia/Shanghai
+timezone: America/Toronto
 
 google_analytics:
   id: ''          # Fill with your Google Analytics ID
@@ -200,3 +200,6 @@ sitemap_exclude:  # Sitemap will exclude the following items.
     - sitemap.xml
     - robots.txt
     - redirects.json
+
+plugins:
+  - jemoji
