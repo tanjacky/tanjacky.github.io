@@ -19,8 +19,33 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
 
-      - uses: helaili/jekyll-action@2.0.4
-        env:
-          JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
-        with:
-          target_branch: 'gh-pages'
+      - name: Bundle config
+        run: |
+          bundle config path vendor/bundle
+
+      - name: Bundle Install
+        if: steps.bundle-cache.outputs.cache-hit != 'true'
+        run: |
+          bundle install
+
+      - name: Bundle Install locally
+        if: steps.bundle-cache.outputs.cache-hit == 'true'
+        run: |
+          bundle install --local
+
+      - name: Build Site
+        run: |
+          bash tools/build.sh -d build
+
+      - name: Push
+        run: |
+          cd build
+          touch .nojekyll
+          remote_branch=gh-pages
+          remote_repo="https://${{ secrets.JEKYLL_PAT }}@github.com/$GITHUB_REPOSITORY.git"
+          git init
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git add .
+          git commit -m "jekyll build from Action $GITHUB_SHA"
+          git push --force $remote_repo master:$remote_branch
