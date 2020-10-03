@@ -7,8 +7,12 @@ on:
 
 jobs:
   github-pages:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     steps:
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.6.x
+
       - uses: actions/checkout@v2
 
       # Use GitHub Actions' cache to shorten build times and decrease load on servers
