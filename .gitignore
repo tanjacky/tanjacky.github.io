@@ -1,14 +1,13 @@
 # hidden files
 .*
 
+!.github
+
 # python compiled files
 *.pyc
 
 # jekyll debug
 _site
-
-# Jeykll Gemfile.lock
-Gemfile.lock
 
 # yui-compressor
 *.jar
