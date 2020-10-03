@@ -15,10 +15,6 @@ jobs:
         with:
           ruby-version: 2.7.x
 
-      - name: Setup bundler
-        run: |
-          bundle update --bundler
-
       - uses: actions/cache@v2
         id: bundle-cache
         with:
